@@ -8,22 +8,34 @@ function getComputerChoice() {
     return choices[Math.floor(Math.random() * 3)];
 }
 
-function playRound(playerChoice, computerChoice) {
-    let roundResult;
+function getWinner(playerChoice, computerChoice) {
+    let winner;
     if(playerChoice === computerChoice) {
-        console.log('Tie game!');
-        return;
-    }
-
-    if(playerChoice === 'rock' && computerChoice === 'scissors' ||
+        winner = 'tie'
+    } else if(playerChoice === 'rock' && computerChoice === 'scissors' ||
         playerChoice === 'paper' && computerChoice === 'rock' ||
         playerChoice === 'scissors' && computerChoice === 'paper'
     ) {
-        roundResult = `You Win! ${playerChoice} beats ${computerChoice}.`
         winner = 'player';
     } else {
-        roundResult = `You Lose! ${computerChoice} beats ${playerChoice}.`;
-        winner = 'comp'
+        winner = 'comp';
+    }
+}
+
+function playRound(playerChoice, computerChoice) {
+    let roundResult;
+    let winner = getWinner(playerChoice, computerChoice);
+    switch (winner) {
+        case 'tie':
+            roundResult = 'Tie game!';
+            break;
+        case 'player':
+            roundResult = `You Win! ${playerChoice} beats ${computerChoice}.`
+            winner = 'player';
+            break;
+        default:
+            roundResult = `You Lose! ${computerChoice} beats ${playerChoice}.`;
+            winner = 'comp'
     }
     console.log(roundResult);
     return winner;
