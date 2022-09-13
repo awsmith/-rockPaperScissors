@@ -52,12 +52,6 @@ function getPlayerChoice() {
 }
 
 function game() {
-    for(let gameCount = 0; gameCount < 5; gameCount++) {
-        console.log(`Game ${gameCount + 1}:\n`);
         let roundResult = playRound( getPlayerChoice(), getComputerChoice());
-        scores[roundResult] += 1;
         console.log(`Current score\n\tPlayer: ${scores['player']}\n\tComp: ${scores['comp']}\n`);
-    }
 }
-
-game();
