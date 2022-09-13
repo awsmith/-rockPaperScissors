@@ -20,6 +20,7 @@ function getWinner(playerChoice, computerChoice) {
     } else {
         winner = 'comp';
     }
+    return winner;
 }
 
 function playRound(playerChoice, computerChoice) {
@@ -51,7 +52,14 @@ function getPlayerChoice() {
     return userInput;
 }
 
+
 function game() {
         let roundResult = playRound( getPlayerChoice(), getComputerChoice());
         console.log(`Current score\n\tPlayer: ${scores['player']}\n\tComp: ${scores['comp']}\n`);
 }
+
+document.querySelectorAll('button').forEach(control => {
+    control.addEventListener('click', function(e) {
+        playRound(this.id, getComputerChoice());
+    })
+})
