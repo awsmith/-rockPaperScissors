@@ -1,7 +1,7 @@
 const choices = ['rock', 'paper', 'scissors']
 const scores = {
     player: 0,
-    comp: 0
+    computer: 0
 }
 
 function getComputerChoice() {
@@ -18,10 +18,30 @@ function getWinner(playerChoice, computerChoice) {
     ) {
         winner = 'player';
     } else {
-        winner = 'comp';
+        winner = 'computer';
     }
     return winner;
 }
+
+function updateScore(winner) {
+    let idToUpdate = winner + '-score';
+    let winnerElement = document.getElementById(idToUpdate.toString());
+    let currentScore = parseInt(winnerElement.value);
+    winnerElement.value = (currentScore += 1).toString();
+}
+
+function declareWinner() {
+    let playerScore = document.getElementById('player-score').value;
+    let computerScore = document.getElementById('computer-score').value;
+
+    if(playerScore === 5) {
+
+    } else if(computerScore === 5) {
+
+    }
+
+}
+
 
 function playRound(playerChoice, computerChoice) {
     let roundResult;
@@ -36,7 +56,10 @@ function playRound(playerChoice, computerChoice) {
             break;
         default:
             roundResult = `You Lose! ${computerChoice} beats ${playerChoice}.`;
-            winner = 'comp'
+            winner = 'computer'
+    }
+    if(winner !== 'tie') {
+        updateScore(winner);
     }
     console.log(roundResult);
     return winner;
@@ -55,7 +78,7 @@ function getPlayerChoice() {
 
 function game() {
         let roundResult = playRound( getPlayerChoice(), getComputerChoice());
-        console.log(`Current score\n\tPlayer: ${scores['player']}\n\tComp: ${scores['comp']}\n`);
+        console.log(`Current score\n\tPlayer: ${scores['player']}\n\tComp: ${scores['computer']}\n`);
 }
 
 document.querySelectorAll('button').forEach(control => {
