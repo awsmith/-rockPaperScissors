@@ -28,25 +28,19 @@ function updateScore(winner) {
     let winnerElement = document.getElementById(idToUpdate.toString());
     let currentScore = parseInt(winnerElement.value);
     winnerElement.value = (currentScore += 1).toString();
+    return currentScore + 1;
 }
 
-function declareWinner() {
-    let playerScore = document.getElementById('player-score').value;
-    let computerScore = document.getElementById('computer-score').value;
-
-    if(playerScore === 5) {
-
-    } else if(computerScore === 5) {
-
-    }
-
+function declareWinner(winner) {
+    alert(`${winner} wins!`);
 }
 
 function resetScore() {
-    let scores = document.querySelectorAll('button');
+    let scores = document.querySelectorAll('input');
     for(let score in scores) {
-        score.value = 0;
+        score.value = '0'.toString();
     }
+    document.getElementById('history').innerHTML = "";
 }
 
 function recordGame(matchRecord) {
@@ -88,6 +82,7 @@ function buildChoiceRecord(choice) {
 function playRound(playerChoice, computerChoice) {
     let roundResult;
     let winner = getWinner(playerChoice, computerChoice);
+    let winCount;
     switch (winner) {
         case 'tie':
             roundResult = 'Tie game!';
@@ -101,14 +96,20 @@ function playRound(playerChoice, computerChoice) {
             winner = 'computer'
     }
     if(winner !== 'tie') {
-        updateScore(winner);
+        winCount = updateScore(winner);
     }
 
     let matchRecord = buildMatchRecord(playerChoice, computerChoice);
     console.log(matchRecord);
     recordGame(matchRecord, winner);
-
     console.log(roundResult);
+    if(winCount) {
+        console.log('Rest?');
+        if(winCount === 5) {
+            console.log('Resetting!');
+            resetScore();
+        }
+    }
     return winner;
 }
 
