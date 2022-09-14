@@ -4,20 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
     <script src="./index.js" defer></script>
     <title>Rock, Paper, Scissors</title>
 </head>
 <body>
-    <button id="rock">Rock</button> 
-    <button id="paper">Paper</button> 
-    <button id="scissors">Scissors</button> 
+    <h1>Ro-Sham-Bo</h1>
+    <div class="container">
+        <button id="rock" class="rock"></button> 
+        <button id="paper" class="paper"></button> 
+        <button id="scissors" class="scissors"></button> 
+    </div>
 
-    <div id="game-results">
-        <label for="player-score">Player Score</label>
-        <input type="number" name="player-score" id="player-score" value="0">
+    <div id="game-results" class="container">
+        <div class="column">
+            <label for="player-score">Player Score</label>
+            <input type="number" name="player-score" id="player-score" value="0">
+        </div>
+        <div class="column">
+            <label for="computer-score">Computer Score</label>
+            <input type="number" name="computer-score" id="computer-score" value="0">
+        </div>
+    </div>
+    <h2>History</h2>
+    <div id="history" class="container">
 
-        <label for="computer-score">Computer Score</label>
-        <input type="number" name="computer-score" id="computer-score" value="0">
     </div>
 </body>
 </html>

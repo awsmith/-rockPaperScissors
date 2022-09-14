@@ -42,6 +42,48 @@ function declareWinner() {
 
 }
 
+function resetScore() {
+    let scores = document.querySelectorAll('button');
+    for(let score in scores) {
+        score.value = 0;
+    }
+}
+
+function recordGame(matchRecord) {
+    let matchHistory = document.getElementById('history');
+    matchHistory.appendChild(matchRecord);
+}
+
+function buildMatchRecord(playerChoice, computerChoice) {
+    let matchRecord = document.createElement('div');
+    let matchColor;
+    matchRecord.classList.add('container');
+    switch(matchColor) {
+        case 'tie':
+            matchColor = 'lightGray';
+            break;
+        case 'player':
+            matchColor = 'gren';
+            break;
+        default:
+            matchColor = 'red;'
+    }
+    matchRecord.appendChild(getRoundNumber());
+    matchRecord.appendChild(buildChoiceRecord(playerChoice));
+    matchRecord.appendChild(buildChoiceRecord(computerChoice));
+
+    matchRecord.style.backgroundColor = matchColor;
+    return matchRecord;
+}
+
+
+function buildChoiceRecord(choice) {
+    let choiceRecord = document.createElement('img');
+    choiceRecord.classList.toggle('record');
+    choiceRecord.src=`./img/${choice}.jpg`;
+    return choiceRecord;
+}
+
 
 function playRound(playerChoice, computerChoice) {
     let roundResult;
@@ -61,6 +103,11 @@ function playRound(playerChoice, computerChoice) {
     if(winner !== 'tie') {
         updateScore(winner);
     }
+
+    let matchRecord = buildMatchRecord(playerChoice, computerChoice);
+    console.log(matchRecord);
+    recordGame(matchRecord, winner);
+
     console.log(roundResult);
     return winner;
 }
@@ -75,6 +122,13 @@ function getPlayerChoice() {
     return userInput;
 }
 
+function getRoundNumber() {
+    let roundElement = document.createElement('div');
+    roundElement.style.width="50px";
+    roundElement.style.height="50px";
+    roundElement.innerHTML = document.getElementById('history').children.length.toString();
+    return roundElement;
+}
 
 function game() {
         let roundResult = playRound( getPlayerChoice(), getComputerChoice());

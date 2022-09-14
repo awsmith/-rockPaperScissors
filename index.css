@@ -1,0 +1,71 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    height: 100px;
+}
+
+button {
+    flex: 1;
+    width: 300px;
+    margin: 5px;
+    border: 5px solid black;
+    box-shadow: 0 5px 5px black;
+}
+
+button:hover {
+    border: 5px solid gold;
+    box-shadow: 0 5px 5px gold;
+    transition: 0.25s;
+    transform: translateY(-5px);
+}
+
+label {
+    font-weight: bold;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    text-align: center;
+}
+
+.rock {
+    background-image: url("./img/rock.jpg");
+    background-size: contain;
+}
+
+.paper {
+    background-image: url("./img/paper.jpg");
+    background-size: contain;
+}
+
+.scissors {
+    background-image: url("./img/scissors.jpg");
+    background-size: contain;
+}
+
+h1, h2{
+    display:flex;
+    justify-content: center;
+}
+
+#history {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 400px;
+    height: 400px;
+    display:flex;
+    margin: auto;
+    flex-direction: column-reverse;
+}
+
+.record {
+    width: 50%;
+    border: 1px solid black;
+    margin: 0px 2px;
+}
